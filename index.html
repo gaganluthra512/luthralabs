@@ -14,11 +14,12 @@
             --easing: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Essential for Snap Scrolling */
+        /* Smooth Scroll & Snap for Local Testing */
         html {
             scroll-behavior: smooth;
             scroll-snap-type: y mandatory;
-            scroll-padding-top: 80px; /* Prevents nav from covering titles */
+            scroll-padding-top: 80px;
+            background-color: var(--bg);
         }
 
         * {
@@ -32,6 +33,7 @@
             color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         /* --- NAVIGATION --- */
@@ -48,6 +50,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0,0,0,0.5);
         }
 
         .logo {
@@ -75,19 +78,18 @@
 
         /* --- LAYOUT --- */
         section {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 10%;
+            padding: 100px 10%;
             scroll-snap-align: start;
             position: relative;
-            overflow: hidden;
         }
 
         .content-wrapper {
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
             text-align: center;
         }
@@ -116,7 +118,7 @@
             margin: 0 auto;
         }
 
-        /* --- PLACEHOLDER COMPONENTS --- */
+        /* --- GRID & BOXES --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -134,11 +136,6 @@
             transition: transform 0.4s var(--easing), border 0.4s ease;
         }
 
-        .box:hover {
-            border-color: rgba(255,255,255,0.3);
-            transform: translateY(-5px);
-        }
-
         .box h3 {
             margin-bottom: 10px;
             font-size: 1.2rem;
@@ -148,6 +145,25 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.5;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
         }
 
         /* --- CONTACT SECTION --- */
@@ -189,10 +205,6 @@
             transition: opacity 0.3s;
         }
 
-        .email:hover {
-            opacity: 0.6;
-        }
-
         footer {
             position: absolute;
             bottom: 40px;
@@ -201,7 +213,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* Subtle Background Mystery */
         .bg-glow {
             position: fixed;
             top: 50%;
@@ -224,6 +235,7 @@
         <div class="nav-links">
             <a href="#initiatives">Initiatives</a>
             <a href="#research">Research</a>
+            <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -245,7 +257,7 @@
                 </div>
                 <div class="box">
                     <h3>Stealth Home</h3>
-                    <p>Reimagining the domestic core. An evolution in how interact with our private sanctuaries.</p>
+                    <p>Reimagining the domestic core. An evolution in how we interact with our private sanctuaries.</p>
                 </div>
             </div>
         </div>
@@ -267,13 +279,37 @@
         </div>
     </section>
 
+    <section id="about">
+        <div class="content-wrapper about-grid">
+            <div class="about-content">
+                <h2 style="text-align: left; font-size: clamp(2rem, 5vw, 3rem);">About the Lab</h2>
+                <div class="about-text">
+                    <p style="margin-bottom: 25px;">
+                        <strong>Luthra Labs </strong>is a private innovation workshop exploring the intersection of intentionality and deep tech. It serves as a testing ground for systems that prioritize human focus and connections over digital noise.
+                    </p>
+                    <p style="margin-bottom: 25px;">
+                        By day, I help scale global product organizations as a Vice President at <strong>Impinj</strong>. My perspective is shaped by two decades of product & engineering leadership at <strong>Microsoft</strong>, <strong>Amazon</strong>, and <strong>Cypress</strong>.
+                    </p>
+                    <p>
+                        Beyond corporate scale, I provide strategic advisory to <strong>GraySky Technology</strong>, supporting their mission to accelerate hardware simulation. Luthra Labs is where these worlds converge—bridging corporate scale with personal agility.
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <img src="https://raw.githubusercontent.com/gaganluthra512/luthralabs/main/headshot.jpg" 
+                     alt="Gagan Luthra" 
+                     style="max-width: 320px; width: 100%; border-radius: 50%; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); filter: grayscale(15%); aspect-ratio: 1/1; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="location-badge">
             <div class="dot"></div>
             Greater Seattle Area
         </div>
         <div class="content-wrapper">
-            <h2>Ready to begin?</h2>
+            <h2 style="text-transform: none; letter-spacing: -0.02em; font-size: clamp(2rem, 5vw, 3rem);">Start a conversation.</h2>
             <a href="mailto:hello@luthralabs.com" class="email">hello@luthralabs.com</a>
         </div>
         <footer>LUTHRA LABS &copy; 2026 &nbsp; | &nbsp; PRIVATE SECTOR</footer>
